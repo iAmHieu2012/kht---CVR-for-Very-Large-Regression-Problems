@@ -66,14 +66,14 @@ This repository contains the official implementation and evaluation notebooks fo
 | `bike_sharing` | Regression | 12 | 17,379 |
 | `covertype` | Classification | 54 | 581,012 |
 
-### Surface Modeling Datasets & Parameters
+### Surface Modeling Datasets
 
-| Dataset | Object Type | Kernel | Sigmas (Scales) | C | mu | epsilon |
-| --- | --- | --- | --- | --- | --- | --- |
-| `Stanford Bunny` | 3D Point Cloud (10,000 pts) | Laplacian | [0.2, 0.1, 0.05] | 1.0 | 1e-4 | 1e-4 |
-| `Stanford Dragon` | 3D Point Cloud (30,000 pts) | Laplacian | [0.1, 0.05, 0.02] | 10.0 | 1e-4 | 1e-5 |
+| Dataset | Original Points | Reconstructed Vertices | Reconstructed Triangles |
+| --- | --- | --- | --- |
+| `Stanford Bunny` | 362,272 | 35,947 | 69,451 |
+| `Stanford Dragon` | 2,748,318 | 566,098 | 1,132,830 |
 
-*Note: The surface modeling uses a Laplacian Kernel (`exp(-gamma * ||x-y||)`) and trains iteratively across multiple scales (`gamma = 1/sigma`) to progressively capture crude shapes, medium details, and fine details.*
+*Note: The original point clouds are very large. For the implicit surface modeling task, the models sample a subset of these points (e.g., 10,000 for Bunny, 30,000 for Dragon) and use a Laplacian Kernel (`exp(-gamma * ||x-y||)`) trained iteratively across multiple scales (`gamma = 1/sigma`) to progressively capture crude shapes, medium details, and fine details.*
 
 ## Setup & Compilation (Local Environment)
 

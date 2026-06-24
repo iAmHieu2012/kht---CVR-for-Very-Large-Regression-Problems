@@ -67,14 +67,14 @@ Kho lưu trữ này chứa mã nguồn triển khai chính thức và các Jupyt
 | `bike_sharing` | Hồi quy | 12 | 17.379 |
 | `covertype` | Phân loại | 54 | 581.012 |
 
-### Các tập dữ liệu Surface Modeling & Tham số chạy
+### Các tập dữ liệu Surface Modeling
 
-| Tên Dataset | Loại Dữ liệu | Kernel | Sigmas | C | mu | epsilon |
-| --- | --- | --- | --- | --- | --- | --- |
-| `Stanford Bunny` | 3D Point Cloud (10,000 pts) | Laplacian | [0.2, 0.1, 0.05] | 1.0 | 1e-4 | 1e-4 |
-| `Stanford Dragon` | 3D Point Cloud (30,000 pts) | Laplacian | [0.1, 0.05, 0.02] | 10.0 | 1e-4 | 1e-5 |
+| Tên Dataset | Điểm dữ liệu gốc | Đỉnh tái tạo | Tam giác tái tạo |
+| --- | --- | --- | --- |
+| `Stanford Bunny` | 362.272 | 35.947 | 69.451 |
+| `Stanford Dragon` | 2.748.318 | 566.098 | 1.132.830 |
 
-*Lưu ý: Tác vụ mô hình hóa bề mặt sử dụng Laplacian Kernel (`exp(-gamma * ||x-y||)`) và được huấn luyện lặp qua nhiều tỷ lệ (với `gamma = 1/sigma`) để mô phỏng từ hình dáng thô sơ, chi tiết trung bình đến các chi tiết sắc nét.*
+*Lưu ý: Dữ liệu point cloud gốc có kích thước rất lớn. Trong các thí nghiệm mô hình hóa bề mặt, thuật toán lấy mẫu một lượng điểm nhất định (ví dụ: 10.000 điểm cho Bunny, 30.000 điểm cho Dragon). Tác vụ mô hình hóa bề mặt sử dụng Laplacian Kernel (`exp(-gamma * ||x-y||)`) và được huấn luyện lặp qua nhiều tỷ lệ (multi-scale với `gamma = 1/sigma`) để mô phỏng từ hình dáng thô sơ (crude shape), chi tiết trung bình (medium detail) đến các chi tiết sắc nét (fine detail).*
 
 ## Cài đặt & Biên dịch (Môi trường Local)
 
